@@ -17,6 +17,8 @@ public final class Constants {
     //talon ports
     public static int leftDrivePort = 2;
     public static int rightDrivePort = 3;
+    public static int leftSlavePort = 4;
+    public static int rightSlavePort = 5;
 
     //joystick ports
     public static int leftJoyPort = 0;

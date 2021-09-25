@@ -27,6 +27,8 @@ public class DriveTrain extends SubsystemBase {
 
   private WPI_TalonSRX leftTalon = new WPI_TalonSRX(Constants.leftDrivePort);
   private WPI_TalonSRX rightTalon = new WPI_TalonSRX(Constants.rightDrivePort);
+  private WPI_TalonSRX leftSlave = new WPI_TalonSRX(Constants.leftSlavePort);
+  private WPI_TalonSRX rightSlave = new WPI_TalonSRX(Constants.rightSlavePort);
   private AHRS navx = new AHRS(SPI.Port.kMXP);
 
   private double kTrackWidth = 0.607;
@@ -53,6 +55,8 @@ public class DriveTrain extends SubsystemBase {
   public DriveTrain() {
     config(leftTalon, false);
     config(rightTalon, true);
+    config(leftSlave, false);
+    config(rightSlave, true);
     navx.calibrate();
     navx.reset();
     resetPosition();
@@ -79,9 +83,11 @@ public class DriveTrain extends SubsystemBase {
   public void tankDrive(double leftPow, double rightPow) {
     leftTalon.set(ControlMode.PercentOutput, leftPow);
     rightTalon.set(ControlMode.PercentOutput, rightPow);
+    //leftSlave.set(ControlMode.PercentOutput, leftPow);
+    //rightSlave.set(ControlMode.PercentOutput, rightPow);
   }
 
-  public void setVoltages (double leftVolt, double rightVolt) {
+  public void setVoltages(double leftVolt, double rightVolt) {
     leftTalon.set(ControlMode.PercentOutput, leftVolt / 12);
     rightTalon.set(ControlMode.PercentOutput, rightVolt / 12);
   }
